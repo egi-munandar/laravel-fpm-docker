@@ -9,7 +9,9 @@ Run laravel application with php-fpm and nginx container
 > 1. Clone this repo to your server
 > 2. Put your laravel application in a folder named "application"
 > 3. Configure docker-compose file. You can add services like database, soketi, minio, etc...
-> 4. Run docker compose build
-> 5. Run docker compose up -d
-> 6. Run composer-install.sh
-> 7. Enjoy your dockerized laravel app!
+> 4. Copy .env.prod to .env
+> 5. Adjust Dockerfile version in .env
+> 6. Run docker compose build
+> 7. Run docker compose up -d
+> 8. Run composer-install.sh
+> 9. Enjoy your dockerized laravel app!

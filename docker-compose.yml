@@ -2,7 +2,7 @@ services:
     app:
         build:
           context: .
-          dockerfile: Dockerfile.83 # <== change docker file here
+          dockerfile: '${DOCKERFILE:-Dockerfile.83}'
         image: laravel-fpm
         volumes:
             - ./application:/var/www
