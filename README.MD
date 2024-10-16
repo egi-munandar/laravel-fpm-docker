@@ -1,5 +1,5 @@
 # Docker Container For Laravel Deployment
-Minimal configuration to run docker on a docker compose environment
+Minimal configuration to run laravel application on a docker compose environment
 
 ### PHP-FPM and Nginx
 Run laravel application with php-fpm and nginx container
