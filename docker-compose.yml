@@ -6,7 +6,10 @@ services:
         image: laravel-fpm
         volumes:
             - ./application:/var/www
+            - ./docker/crontab:/etc/cron.d/cron
             - ./docker/php/local.ini:/usr/local/etc/php/conf.d/local.ini
+            - ./docker/supervisor/supervisor.conf:/etc/supervisor/supervisor.conf
+            - ./docker/supervisor/conf.d:/etc/supervisor/conf.d
         networks:
             - appnet
     webserver:
