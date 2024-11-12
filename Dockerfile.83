@@ -21,7 +21,8 @@ RUN apt-get update && apt-get install -y \
     libzip-dev \
     libgd-dev \
     supervisor \
-    ffmpeg
+    ffmpeg \
+    sudo
 # Clear cache
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 # Install extensions
@@ -33,11 +34,13 @@ RUN docker-php-ext-install opcache
 # Install composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
+
 # Create the log file to be able to run tail
 RUN touch /var/log/cron.log
 # Add user for laravel application
 RUN groupadd -g 1000 www
 RUN useradd -u 1000 -ms /bin/bash -g www www
+RUN echo "www  ALL=(ALL:ALL) NOPASSWD: ALL" >> /etc/sudoers
 RUN mkdir /var/run/supervisor
 RUN chown www:www /var/run/supervisor
 RUN chown -R www:www /var/log/supervisor
@@ -46,4 +49,6 @@ RUN chown -R www:www /var/log/supervisor
 RUN chown -R www:www /var/www
 
 COPY ./docker/entrypoint.sh /entrypoint.sh
+EXPOSE 9000
+USER www
 ENTRYPOINT [ "/entrypoint.sh" ]
